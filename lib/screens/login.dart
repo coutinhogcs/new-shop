@@ -1,133 +1,95 @@
 import 'package:flutter/material.dart';
+import 'package:new_shop/screens/home.dart';
+import 'package:new_shop/view/components/input_text.dart';
+import 'package:new_shop/view/components/logo.dart';
+import 'package:new_shop/view/components/social_auth.dart';
 
-import 'home.dart';
-
-/// Tela de login com botão que exibe alerta
 class LoginPage extends StatelessWidget {
   const LoginPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.only(top: 25),
+      body: Container(
+        alignment: Alignment.center,
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
-            Image.asset('lib/images/Logo.png', width: 200, height: 200,),
-            Text('Make Buy', style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),),
-            Center(
-              child: Padding(
-                padding: const EdgeInsets.only(top: 40),
-                child: Container(
-                  width: 390,
-                  height: 500,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(10),
-                    color: Color(0xff92ebcb),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Text(
-                          "Bem-vindo!",
-                          style: TextStyle(
-                              fontSize: 35,
-                              fontWeight: FontWeight.bold,
-                            color: Colors.black87
-                          ),
-                        ),
-                        const TextField(
-                          decoration: InputDecoration(
-                            labelText: "Email",
-                            border: OutlineInputBorder(),
-                          ),
-                        ),
-                        const TextField(
-                          obscureText: true,
-                          decoration: InputDecoration(
-                            labelText: "Senha",
-                            border: OutlineInputBorder(),
-
-                          ),
-                        ),
-                        Center(
-                          child: SizedBox(
-                            width: 180,
-                            height: 50,
-                            child: ElevatedButton(
-                              onPressed: () {
-                                Navigator.push(context, MaterialPageRoute(builder: (context) => const HomePage()));
-                              },
-                              style: ElevatedButton.styleFrom(
-                               elevation: 5,
-                                shape: ContinuousRectangleBorder(borderRadius: BorderRadiusGeometry.circular(20))
-                              ),
-                              child: const Text(
-                                "Entrar",
-                                style: TextStyle(fontSize: 25, color: Colors.black),
-                              ),
-                            ),
-                          ),
-                        ),
-
-                        const Center(
-                          child: Text("Cadastre-se/Esqueceu a senha?"),
-                        ),
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            google(),
-                            facebook(),
-                            twitter()
-                          ],
-                        ),
-
-                      ],
-                    ),
-                  ),
-                ),
+            Logo(),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Email:", style: TextStyle(fontSize: 15, color: Colors.black54,  fontFamily: "Poppins")),
+                    InputText(suffixIcon: Icon(Icons.email), visibility: false, hintText: "Escreva seu email", obscureText: false,),
+                  ]
               ),
             ),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text("Senha:", style: TextStyle(fontSize: 15, color: Colors.black54, fontFamily: "Poppins")),
+                    InputText(suffixIcon: Icon(Icons.lock), visibility: true, hintText: "Escreva sua senha", obscureText: true,),
+                  ]
+              ),
+            ),
+
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: const Text("Esqueceu a senha?", style: TextStyle(fontSize: 15, color: Colors.black45, fontWeight: FontWeight.w500, fontFamily: "Poppins")),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(10.0),
+              child: Row(
+                children: [
+                  Expanded(
+                      child: Divider(
+                        color: Color(0xff92ebcb),
+                        thickness: 3,
+                      )
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: const Text("ou", style: TextStyle(fontSize: 15, color: Color(0xff92ebcb), fontWeight: FontWeight.w600, fontFamily: "Poppins")),
+                  ),
+                  Expanded(
+                      child: Divider(
+                        color: Color(0xff92ebcb),
+                        thickness: 3,
+                      )
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 30),
+              child: SocialAuth(),
+            ),
+            Padding(
+              padding: const EdgeInsets.symmetric(vertical: 25),
+              child: SizedBox(
+                width: 300,
+                height: 50,
+                child: ElevatedButton(onPressed: () {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => HomePage()));
+                },
+                    style: ElevatedButton.styleFrom(
+                      elevation: 5,
+                      shape: ContinuousRectangleBorder(borderRadius: BorderRadiusGeometry.circular(35))
+                    ),
+                    child: Text('Entrar', style: TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.w400, fontFamily: "Poppins",),)
+                ),
+              ),
+            )
           ],
         ),
       ),
       backgroundColor: Color(0xffe6f877),
     );
   }
-
-
-  Widget google(){
-    return SizedBox(
-      child: Image.asset(
-        'lib/images/google.png',
-        height: 50,
-        width: 50,
-      ),
-    );
-  }
-
-  Widget facebook(){
-    return  SizedBox(
-        child: Image.asset(
-          'lib/images/facebook.png',
-          height: 50,
-          width: 50,
-
-        ),
-    );
-  }
-
-  Widget twitter(){
-    return  SizedBox(
-      child: Image.asset(
-        'lib/images/twitter.png',
-        height: 50,
-        width: 50,
-      ),
-    );
-  }
-
 
 }

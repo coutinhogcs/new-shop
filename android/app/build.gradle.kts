@@ -10,7 +10,7 @@ plugins {
 
 android {
     namespace = "com.example.new_shop"
-    compileSdk = 34
+    compileSdk = 35
     ndkVersion = "27.0.12077973"
 
     compileOptions {
@@ -27,8 +27,8 @@ android {
         applicationId = "com.example.new_shop"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
-        minSdk = flutter.minSdkVersion
-        targetSdk = flutter.targetSdkVersion
+        minSdk = 23  // 👈 Set explicitly (required by firebase_auth)
+        targetSdk = flutter.targetSdkVersion  // Or set manually (e.g., 33)
         versionCode = flutter.versionCode
         versionName = flutter.versionName
     }
