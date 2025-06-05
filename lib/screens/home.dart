@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:new_shop/view/components/scrow-itens.dart';
+
+import '../view/components/input_text.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -6,26 +9,26 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Menu"),
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: Icon(Icons.arrow_back_rounded),
-        ),
-        toolbarHeight: 45,
-        backgroundColor: Color(0xffbebebe),
-      ),
-      body: Center(
-        child: Column(
-          children: [
-            Icon(Icons.person, size: 90, color: Color(0xffe6f877)),
-            Text("Hello Guilherme!", style: TextStyle(fontSize: 30)),
-          ],
-        ),
-      ),
       backgroundColor: Color(0xffe6f877),
+      appBar: AppBar(title: Text('Home'),),
+      body:  SingleChildScrollView(
+        child: SizedBox(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              TitleHome(title: 'Procurar', fontWeight: FontWeight.w500),
+              Padding(
+                padding: const EdgeInsets.fromLTRB(15, 0, 15, 0),
+                child: InputText(suffixIcon: Icon(Icons.search), visibility: true, hintText: 'pesquisar', obscureText: false)
+              ),
+              TextHome(text: 'Novos'),
+              ListScrow(),
+              TextHome(text: 'Usados'),
+              ListScrow(),
+            ]
+          ),
+        ),
+      ),
     );
   }
 }
